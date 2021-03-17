@@ -1,5 +1,21 @@
-avatar: A Plugin for Pelican
+Avatar: A Plugin for Pelican
 ============================
+
+[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/avatar/build)](https://github.com/pelican-plugins/avatar/actions)
+[![PyPI Version](https://img.shields.io/pypi/v/pelican-avatar)](https://pypi.org/project/pelican-avatar/)
+![License](https://img.shields.io/pypi/l/pelican-avatar?color=blue)
+
+This plugin allows the inclusion of [Libravatar][] or [Gravatar][] user profile pictures, according to the email address of the article's author.
+
+[Libravatar]: http://www.libravatar.org
+[Gravatar]: http://www.gravatar.com
+
+Installation
+------------
+
+This plugin can be installed via:
+
+    python -m pip install pelican-avatar
 
 Usage
 -----
@@ -50,6 +66,16 @@ Credits
 
 Inspiration for this plugin came from the
 [gravatar plugin](https://github.com/getpelican/pelican-plugins/tree/master/gravatar).
+
+Contributing
+------------
+
+Contributions are welcome and much appreciated. Every little bit helps. You can contribute by improving the documentation, adding missing features, and fixing bugs. You can also help out by reviewing and commenting on [existing issues][].
+
+To start contributing to this plugin, review the [Contributing to Pelican][] documentation, beginning with the **Contributing Code** section.
+
+[existing issues]: https://github.com/pelican-plugins/libravatar/issues
+[Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
 
 Author
 ------
