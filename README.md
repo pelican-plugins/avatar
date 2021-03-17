@@ -43,9 +43,9 @@ The avatar image corresponding to the specified email is searched at Libravatar.
 This plugin assigns the `author_avatar` variable to the Libravatar URL and makes the variable available within the article's contextFor instance, you can add the following to a template file (for example, to the `article_infos.html` template file), just before the infomation about the author:
 
 ```html
-{% if article.author_libravatar %}
+{% if article.author_avatar %}
 <div align="center">
-        <img src="{{ article.author_libravatar }}">
+        <img src="{{ article.author_avatar }}">
 </div>
 {% endif %}
 ```
