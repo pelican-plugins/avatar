@@ -1,7 +1,7 @@
-"""Unit testing suite for the Libravatar Plugin"""
+"""Unit testing suite for the Avatar Plugin"""
 from __future__ import print_function
 
-## Copyright (C) 2015  Rafael Laboissiere <rafael@laboissiere.net>
+## Copyright (C) 2015, 2021  Rafael Laboissière <rafael@laboissiere.net>
 ##
 ## This program is free software: you can redistribute it and/or modify it
 ## under the terms of the GNU General Affero Public License as published by
@@ -22,7 +22,7 @@ import unittest
 from tempfile import mkdtemp
 from shutil import rmtree
 
-from . import libravatar
+from . import avatar
 from pelican import Pelican
 from pelican.settings import read_settings
 
@@ -31,8 +31,8 @@ AUTHOR_EMAIL = 'bart.simpson@example.com'
 LIBRAVATAR_BASE_URL = 'http://cdn.libravatar.org/avatar/'
 
 
-class TestLibravatarURL (unittest.TestCase):
-    """Class for testing the URL output of the Libravatar plugin"""
+class TestAvatarURL (unittest.TestCase):
+    """Class for testing the URL output of the Avatar plugin"""
 
     def setUp (self, override = None):
         self.output_path = mkdtemp (prefix = 'pelicantests.')
@@ -41,7 +41,7 @@ class TestLibravatarURL (unittest.TestCase):
             article_infos_file.write('''
 <footer class="post-info">
         <div align="center">
-                <img src="{{ article.author_libravatar }}">
+                <img src="{{ article.author_avatar }}">
         </div>
 </footer>
 ''')
@@ -50,7 +50,7 @@ class TestLibravatarURL (unittest.TestCase):
             'PATH': self.content_path,
             'THEME_TEMPLATES_OVERRIDES': [self.content_path],
             'OUTPUT_PATH': self.output_path,
-            'PLUGINS': [libravatar],
+            'PLUGINS': [avatar],
             'CACHE_CONTENT': False
         }
         if override:
@@ -76,27 +76,26 @@ class TestLibravatarURL (unittest.TestCase):
                     break
             assert found
 
-class TestLibravatarMissing (TestLibravatarURL):
-    """Class for testing the Libravatar "missing picture" option"""
+class TestAvatarMissing (TestAvatarURL):
+    """Class for testing the "missing picture" option"""
 
     def setUp (self, override = None):
         self.library = 'wavatar'
-        TestLibravatarURL.setUp (self,
-                                  override = {'LIBRAVATAR_MISSING':
-                                              self.library})
+        TestAvatarURL.setUp (self,
+                             override = {'AVATAR_MISSING': self.library})
 
     def test_url (self):
-        TestLibravatarURL.test_url (self, r'\?d=' + self.library)
+        TestAvatarURL.test_url (self, r'\?d=' + self.library)
 
 
-class TestLibravatarSize (TestLibravatarURL):
-    """Class for testing the Libravatar size option"""
+class TestAvatarSize (TestAvatarURL):
+    """Class for testing the size option"""
 
     def setUp (self, override = None):
         self.size = 100
-        TestLibravatarURL.setUp (self,
-                                  override = {'LIBRAVATAR_SIZE': self.size})
+        TestAvatarURL.setUp (self,
+                             override = {'AVATAR_SIZE': self.size})
 
     def test_url (self):
-        TestLibravatarURL.test_url (self, r'\?s=' + str (self.size))
+        TestAvatarURL.test_url (self, r'\?s=' + str (self.size))
 

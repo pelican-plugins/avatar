@@ -1,6 +1,6 @@
-"""Libravatar plugin for Pelican"""
+"""Avatar plugin for Pelican"""
 
-## Copyright (C) 2015  Rafael Laboissiere <rafael@laboissiere.net>
+## Copyright (C) 2015, 2021  Rafael Laboissière <rafael@laboissiere.net>
 ##
 ## This program is free software: you can redistribute it and/or modify it
 ## under the terms of the GNU General Affero Public License as published by
@@ -21,15 +21,15 @@ from pelican import signals
 
 
 def initialize (pelicanobj):
-    """Initialize the Libravatar plugin"""
-    pelicanobj.settings.setdefault ('LIBRAVATAR_MISSING', None)
-    pelicanobj.settings.setdefault ('LIBRAVATAR_SIZE', None)
+    """Initialize the Avatar plugin"""
+    pelicanobj.settings.setdefault ('AVATAR_MISSING', None)
+    pelicanobj.settings.setdefault ('AVATAR_SIZE', None)
 
 
-def add_libravatar (generator, metadata):
-    """Article generator connector for the Libravatar plugin"""
-    missing = generator.settings.get ('LIBRAVATAR_MISSING')
-    size = generator.settings.get ('LIBRAVATAR_SIZE')
+def add_avatar (generator, metadata):
+    """Article generator connector for the Avatar plugin"""
+    missing = generator.settings.get ('AVATAR_MISSING')
+    size = generator.settings.get ('AVATAR_SIZE')
 
     ## Check the presence of the Email header
     if 'email' not in metadata.keys ():
@@ -58,10 +58,10 @@ def add_libravatar (generator, metadata):
                 url = url + 's=' + str (size)
 
         ## Add URL to the article's metadata
-        metadata ['author_libravatar'] = url
+        metadata ['author_avatar'] = url
 
 
 def register ():
-    """Register the Libravatar plugin with Pelican"""
+    """Register the Avatar plugin with Pelican"""
     signals.initialized.connect (initialize)
-    signals.article_generator_context.connect (add_libravatar)
+    signals.article_generator_context.connect (add_avatar)
