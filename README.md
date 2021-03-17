@@ -48,7 +48,12 @@ This plugin assigns the `author_avatar` variable to the Libravatar URL and makes
         <img src="{{ article.author_avatar }}">
 </div>
 {% endif %}
+
 ```
+
+This will yield the following result (with the notmyidea theme):
+
+![figure](avatar-example.png)
 
 Configuration
 -------------
