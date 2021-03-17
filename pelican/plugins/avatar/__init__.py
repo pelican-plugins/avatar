@@ -1,1 +1,1 @@
-from . avatar import *
+from .avatar import *  # NOQA
