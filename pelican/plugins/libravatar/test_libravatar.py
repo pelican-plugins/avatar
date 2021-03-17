@@ -19,7 +19,6 @@ from __future__ import print_function
 import os
 import re
 import unittest
-import hashlib
 from tempfile import mkdtemp
 from shutil import rmtree
 
@@ -29,7 +28,6 @@ from pelican.settings import read_settings
 
 
 AUTHOR_EMAIL = 'bart.simpson@example.com'
-MD5_HASH = hashlib.md5 (AUTHOR_EMAIL.encode()).hexdigest ()
 LIBRAVATAR_BASE_URL = 'http://cdn.libravatar.org/avatar/'
 
 
@@ -73,7 +71,7 @@ class TestLibravatarURL (unittest.TestCase):
         with open (os.path.join (self.output_path, 'test.html'), 'r') as test_html_file:
             found = False
             for line in test_html_file.readlines ():
-                if re.search (LIBRAVATAR_BASE_URL + MD5_HASH + options, line):
+                if re.search (LIBRAVATAR_BASE_URL + "[0-9a-f]+" + options, line):
                     found = True
                     break
             assert found
