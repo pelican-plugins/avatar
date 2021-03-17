@@ -19,9 +19,9 @@ from __future__ import print_function
 
 import os
 import re
+import unittest
 from shutil import rmtree
 from tempfile import mkdtemp
-import unittest
 
 from pelican import Pelican
 from pelican.settings import read_settings
