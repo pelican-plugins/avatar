@@ -39,11 +39,18 @@ class TestLibravatarURL (unittest.TestCase):
     def setUp (self, override = None):
         self.output_path = mkdtemp (prefix = 'pelicantests.')
         self.content_path = mkdtemp (prefix = 'pelicantests.')
-        theme_path = os.path.join (os.path.dirname (os.path.abspath (__file__)),
-                                   'test_data', 'theme')
+        with open (os.path.join(self.content_path, "article_infos.html"), "w") as article_infos_file:
+            article_infos_file.write('''
+<footer class="post-info">
+        <div align="center">
+                <img src="{{ article.author_libravatar }}">
+        </div>
+</footer>
+''')
+
         settings = {
             'PATH': self.content_path,
-            'THEME': theme_path,
+            'THEME_TEMPLATES_OVERRIDES': [self.content_path],
             'OUTPUT_PATH': self.output_path,
             'PLUGINS': [libravatar],
             'CACHE_CONTENT': False
