@@ -16,7 +16,7 @@
 ## along with this program.  If not, see http://www.gnu.org/licenses/.
 
 
-import hashlib
+from libravatar import libravatar_url
 from pelican import signals
 
 
@@ -35,17 +35,14 @@ def add_avatar (generator, metadata):
     if 'email' not in metadata.keys ():
         try:
             metadata ['email'] = generator.settings.get ('AUTHOR_EMAIL')
-        except:
+        except Exception:
             pass
 
     ## Add the Libravatar URL
     if metadata ['email']:
 
-        ## Compose URL using the MD5 hash
-        ## (the ascii encoding is necessary for Python3)
-        email = metadata ['email'].lower ().encode ('ascii')
-        md5 = hashlib.md5 (email).hexdigest ()
-        url = 'http://cdn.libravatar.org/avatar/' + md5
+        # Compose URL
+        url = libravatar_url(email=metadata["email"].lower())
 
         ## Add eventual "missing picture" option
         if missing or size:
