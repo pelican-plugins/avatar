@@ -19,9 +19,9 @@ from __future__ import print_function
 
 import os
 import re
-import unittest
 from shutil import rmtree
 from tempfile import mkdtemp
+import unittest
 
 from pelican import Pelican
 from pelican.settings import read_settings
@@ -30,6 +30,7 @@ from . import avatar
 
 AUTHOR_EMAIL = "bart.simpson@example.com"
 LIBRAVATAR_BASE_URL = "http://cdn.libravatar.org/avatar/"
+GRAVATAR_BASE_URL = "http://www.gravatar.com/"
 
 
 class TestAvatarURL(unittest.TestCase):
@@ -75,10 +76,14 @@ class TestAvatarURL(unittest.TestCase):
         rmtree(self.content_path)
 
     def test_url(self, options=""):
+        if self.settings["AVATAR_USE_GRAVATAR"]:
+            base_url = GRAVATAR_BASE_URL
+        else:
+            base_url = LIBRAVATAR_BASE_URL
         with open(os.path.join(self.output_path, "test.html"), "r") as test_html_file:
             found = False
             for line in test_html_file.readlines():
-                if re.search(LIBRAVATAR_BASE_URL + "[0-9a-f]+" + options, line):
+                if re.search(base_url + "[0-9a-f]+" + options, line):
                     found = True
                     break
             assert found
@@ -104,3 +109,13 @@ class TestAvatarSize(TestAvatarURL):
 
     def test_url(self):
         TestAvatarURL.test_url(self, r"\?s=" + str(self.size))
+
+
+class TestAvatarUseGravatar(TestAvatarURL):
+    """Class for testing the 'use Gravatar' option"""
+
+    def setUp(self, override=None):
+        TestAvatarURL.setUp(self, override={"AVATAR_USE_GRAVATAR": True})
+
+    def test_url(self):
+        TestAvatarURL.test_url(self)

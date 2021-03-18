@@ -18,12 +18,14 @@
 from pelican import signals
 
 from libravatar import libravatar_url
+from libgravatar import Gravatar
 
 
 def initialize(pelicanobj):
     """Initialize the Avatar plugin"""
     pelicanobj.settings.setdefault("AVATAR_MISSING", None)
     pelicanobj.settings.setdefault("AVATAR_SIZE", None)
+    pelicanobj.settings.setdefault("AVATAR_USE_GRAVATAR", None)
 
 
 def add_avatar(generator, metadata):
@@ -32,17 +34,22 @@ def add_avatar(generator, metadata):
     size = generator.settings.get("AVATAR_SIZE")
 
     # Check the presence of the Email header
-    if "email" not in metadata.keys():
-        try:
-            metadata["email"] = generator.settings.get("AUTHOR_EMAIL")
-        except Exception:
-            pass
+    if "email" in metadata.keys():
+        email = metadata["email"]
+    else:
+        email = generator.settings.get("AUTHOR_EMAIL")
 
     # Add the Libravatar URL
-    if metadata["email"]:
+    if email:
+
+        # Lowercase email address
+        email = email.lower()
 
         # Compose URL
-        url = libravatar_url(email=metadata["email"].lower())
+        if generator.settings.get("AVATAR_USE_GRAVATAR"):
+            url = Gravatar(email).get_profile()
+        else:
+            url = libravatar_url(email)
 
         # Add eventual "missing picture" option
         if missing or size:

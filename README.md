@@ -66,6 +66,8 @@ The following variables can be set in the Pelican configuration file:
 
 - `AVATAR_SIZE`: The size, in pixels, of the profile picture (it is always square, so the height is equal to the width). If not specified, the default size (80×80) is returned by Libravatar.
 
+- `AVATAR_USE_GRAVATAR`: By default, the avatar is searched at the Libravatar service. Search at the Gravatar service can be forced by setting this configuration variable to `True`.
+
 Credits
 -------
 
