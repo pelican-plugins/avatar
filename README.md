@@ -51,9 +51,11 @@ This plugin assigns the `author_avatar` variable to the Libravatar URL and makes
 
 ```
 
-This will yield the following result (with the notmyidea theme):
+This will yield the following result (with the [notmyidea][] theme):
 
 ![figure](avatar-example.png)
+
+[notmyidea]: https://github.com/getpelican/pelican/tree/master/pelican/themes/notmyidea
 
 Page templates work in a similar way:
 
