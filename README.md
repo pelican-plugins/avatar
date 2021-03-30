@@ -40,7 +40,7 @@ The avatar image corresponding to the specified email is searched at Libravatar.
 
 ### Adjusting the template
 
-This plugin assigns the `author_avatar` variable to the Libravatar URL and makes the variable available within the article's context. For instance, you can add the following to a template file (for example, to the `article_infos.html` template file), just before the infomation about the author:
+This plugin assigns the `author_avatar` variable to the Libravatar URL and makes the variable available within the article's context. For instance, you can add the following to a template file (for example, to the `article_infos.html` template file), just before the information about the author:
 
 ```html
 {% if article.author_avatar %}
