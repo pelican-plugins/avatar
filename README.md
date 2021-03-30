@@ -120,6 +120,13 @@ To start contributing to this plugin, review the [Contributing to Pelican][] doc
 [existing issues]: https://github.com/pelican-plugins/libravatar/issues
 [Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
 
+Acknowledgments
+---------------
+
+Thanks to [Troy Curtis][] for adding support for page generator and global generator context and for making improvements in the Poetry workflow.
+
+[Troy Curtis]: https://github.com/troycurtisjr
+
 Author
 ------
 
