@@ -18,19 +18,24 @@
 from __future__ import print_function
 
 import os
-import re
 from shutil import rmtree
 from tempfile import mkdtemp
 import unittest
+
+from libgravatar import Gravatar
+from libravatar import libravatar_url
 
 from pelican import Pelican
 from pelican.settings import read_settings
 
 from . import avatar
 
-AUTHOR_EMAIL = "bart.simpson@example.com"
-LIBRAVATAR_BASE_URL = "http://cdn.libravatar.org/avatar/"
-GRAVATAR_BASE_URL = "http://www.gravatar.com/"
+GLOBAL_AUTHOR_EMAIL = "homer.simpson@example.com"
+ARTICLE_AUTHOR_EMAIL = "bart.simpson@example.com"
+GLOBAL_GRAVATAR_URL = Gravatar(GLOBAL_AUTHOR_EMAIL).get_profile()
+GLOBAL_LIBRVATAR_URL = libravatar_url(GLOBAL_AUTHOR_EMAIL)
+ARTICLE_GRAVATAR_URL = Gravatar(ARTICLE_AUTHOR_EMAIL).get_profile()
+ARTICLE_LIBRAVATAR_URL = libravatar_url(ARTICLE_AUTHOR_EMAIL)
 
 
 class TestAvatarURL(unittest.TestCase):
@@ -52,19 +57,38 @@ class TestAvatarURL(unittest.TestCase):
 """
             )
 
+        with open(
+            os.path.join(self.content_path, "global_info.html"), "w"
+        ) as global_infos_file:
+            global_infos_file.write(
+                """
+<footer class="post-info">
+        <div align="center">
+                <img src="{{ author_avatar }}">
+        </div>
+</footer>
+"""
+            )
+
         settings = {
             "PATH": self.content_path,
             "THEME_TEMPLATES_OVERRIDES": [self.content_path],
             "OUTPUT_PATH": self.output_path,
             "PLUGINS": [avatar],
             "CACHE_CONTENT": False,
+            "AVATAR_AUTHOR_EMAIL": GLOBAL_AUTHOR_EMAIL,
         }
         if override:
             settings.update(override)
 
+        with open(
+            os.path.join(self.content_path, "global_test.md"), "w"
+        ) as test_md_file:
+            test_md_file.write("Title: Global Test\nDate: 2019-09-05\n\n")
+
         with open(os.path.join(self.content_path, "test.md"), "w") as test_md_file:
             test_md_file.write(
-                "Title: Test\nDate: 2019-09-05\nEmail: " + AUTHOR_EMAIL + "\n\n"
+                "Title: Test\nDate: 2019-09-05\nEmail: " + ARTICLE_AUTHOR_EMAIL + "\n\n"
             )
 
         self.settings = read_settings(override=settings)
@@ -75,18 +99,26 @@ class TestAvatarURL(unittest.TestCase):
         rmtree(self.output_path)
         rmtree(self.content_path)
 
-    def test_url(self, options=""):
-        if self.settings["AVATAR_USE_GRAVATAR"]:
-            base_url = GRAVATAR_BASE_URL
-        else:
-            base_url = LIBRAVATAR_BASE_URL
-        with open(os.path.join(self.output_path, "test.html"), "r") as test_html_file:
+    def _assert_url_in_file(self, filename, url, options):
+        with open(os.path.join(self.output_path, filename), "r") as test_html_file:
             found = False
-            for line in test_html_file.readlines():
-                if re.search(base_url + "[0-9a-f]+" + options, line):
+            search_url = url + options
+            for line in test_html_file:
+                if search_url in line:
                     found = True
                     break
             assert found
+
+    def test_url(self, options=""):
+        if self.settings["AVATAR_USE_GRAVATAR"]:
+            global_base_url = GLOBAL_GRAVATAR_URL
+            article_base_url = ARTICLE_GRAVATAR_URL
+        else:
+            global_base_url = GLOBAL_LIBRVATAR_URL
+            article_base_url = ARTICLE_LIBRAVATAR_URL
+
+        self._assert_url_in_file("test.html", article_base_url, options)
+        self._assert_url_in_file("global-test.html", global_base_url, options)
 
 
 class TestAvatarMissing(TestAvatarURL):
@@ -97,7 +129,7 @@ class TestAvatarMissing(TestAvatarURL):
         TestAvatarURL.setUp(self, override={"AVATAR_MISSING": self.library})
 
     def test_url(self):
-        TestAvatarURL.test_url(self, r"\?d=" + self.library)
+        TestAvatarURL.test_url(self, r"?d=" + self.library)
 
 
 class TestAvatarSize(TestAvatarURL):
@@ -108,7 +140,7 @@ class TestAvatarSize(TestAvatarURL):
         TestAvatarURL.setUp(self, override={"AVATAR_SIZE": self.size})
 
     def test_url(self):
-        TestAvatarURL.test_url(self, r"\?s=" + str(self.size))
+        TestAvatarURL.test_url(self, r"?s=" + str(self.size))
 
 
 class TestAvatarUseGravatar(TestAvatarURL):

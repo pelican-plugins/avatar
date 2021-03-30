@@ -55,6 +55,42 @@ This will yield the following result (with the notmyidea theme):
 
 ![figure](avatar-example.png)
 
+Page templates work in a similar way:
+
+```html
+{% if page.author_avatar %}
+<div align="center">
+        <img src="{{ page.author_avatar }}">
+</div>
+{% endif %}
+```
+
+To use in common templates, such as `base.html`, you can do something like this:
+
+```html
+{% if author_avatar %}
+<div align="center">
+        <img src="{{ author_avatar }}">
+</div>
+{% endif %}
+```
+
+Or if you want to support optional overriding of the email in articles or pages,
+while still taking the global configuration if neither is available:
+
+```html
+{% if article and article.author_avatar %}
+  {% set author_avatar = article.author_avatar %}
+{% elif page and page.author_avatar %}
+  {% set author_avatar = page.author_avatar %}
+{% endif %}
+{% if author_avatar %}
+<div align="center">
+        <img src="{{ author_avatar }}">
+</div>
+{% endif %}
+```
+
 Configuration
 -------------
 

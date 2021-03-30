@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 
-from pelican import signals
-
-from libravatar import libravatar_url
 from libgravatar import Gravatar
+from libravatar import libravatar_url
+
+from pelican import signals
 
 
 def initialize(pelicanobj):
@@ -28,40 +28,58 @@ def initialize(pelicanobj):
     pelicanobj.settings.setdefault("AVATAR_USE_GRAVATAR", None)
 
 
+def gen_avatar_url(settings, email):
+    """
+    Generate the appropriate libravatar/gravatar URL based on the provided email.
+    """
+    # Early exit if there is nothing to do
+    if not email:
+        return None
+
+    missing = settings.get("AVATAR_MISSING")
+    size = settings.get("AVATAR_SIZE")
+
+    email = email.lower()
+    # Compose URL
+    if settings.get("AVATAR_USE_GRAVATAR"):
+        url = Gravatar(email).get_profile()
+    else:
+        url = libravatar_url(email)
+
+    # Add eventual "missing picture" option
+    if missing or size:
+        url = url + "?"
+        if missing:
+            url = url + "d=" + missing
+            if size:
+                url = url + "&"
+        if size:
+            url = url + "s=" + str(size)
+    return url
+
+
+def add_avatar_context(generator):
+    """Generator context connector for Avatar plugin."""
+    # This adds the avatar URL to the global generator context based on the
+    # global setting.
+    email = generator.settings.get("AVATAR_AUTHOR_EMAIL")
+    url = gen_avatar_url(generator.settings, email)
+    if url:
+        generator.context["author_avatar"] = url
+
+
 def add_avatar(generator, metadata):
-    """Article generator connector for the Avatar plugin"""
-    missing = generator.settings.get("AVATAR_MISSING")
-    size = generator.settings.get("AVATAR_SIZE")
+    """Article/Page generator connector for the Avatar plugin"""
 
     # Check the presence of the Email header
-    if "email" in metadata.keys():
+    if "email" in metadata:
         email = metadata["email"]
     else:
-        email = generator.settings.get("AUTHOR_EMAIL")
+        email = generator.settings.get("AVATAR_AUTHOR_EMAIL")
 
-    # Add the Libravatar URL
-    if email:
-
-        # Lowercase email address
-        email = email.lower()
-
-        # Compose URL
-        if generator.settings.get("AVATAR_USE_GRAVATAR"):
-            url = Gravatar(email).get_profile()
-        else:
-            url = libravatar_url(email)
-
-        # Add eventual "missing picture" option
-        if missing or size:
-            url = url + "?"
-            if missing:
-                url = url + "d=" + missing
-                if size:
-                    url = url + "&"
-            if size:
-                url = url + "s=" + str(size)
-
-        # Add URL to the article's metadata
+    url = gen_avatar_url(generator.settings, email)
+    if url:
+        # Add URL to the article/page metadata
         metadata["author_avatar"] = url
 
 
@@ -69,3 +87,5 @@ def register():
     """Register the Avatar plugin with Pelican"""
     signals.initialized.connect(initialize)
     signals.article_generator_context.connect(add_avatar)
+    signals.page_generator_context.connect(add_avatar)
+    signals.generator_init.connect(add_avatar_context)
