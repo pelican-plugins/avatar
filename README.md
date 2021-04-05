@@ -5,7 +5,7 @@ Avatar: A Plugin for Pelican
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-avatar)](https://pypi.org/project/pelican-avatar/)
 ![License](https://img.shields.io/pypi/l/pelican-avatar?color=blue)
 
-This plugin allows the inclusion of [Libravatar][] or [Gravatar][] user profile pictures, according to the email address of the article's author.
+This plugin allows the inclusion of [Libravatar][] or [Gravatar][] user profile pictures, corresponding to the email address of the article's author.
 
 [Libravatar]: http://www.libravatar.org
 [Gravatar]: http://www.gravatar.com
@@ -20,27 +20,27 @@ This plugin can be installed via:
 Usage
 -----
 
-### Specifying the author's email address
+### Specifying the Author's Email Address
 
-The default email address is taken from the `AVATAR_AUTHOR_EMAIL` variable in the Pelican configuration fileThis default value can be overridden in a per-article basis, according to the email address found in the article's metadata.
+The default email address is taken from the `AVATAR_AUTHOR_EMAIL` variable in the Pelican settings file. This default value can be overridden on a per-article basis by specifying an email address in the article's metadata:
 
-In ReSTructuredText:
+For reStructuredText:
 
 ```rst
 :email: bart.simpson@example.com
 ```
 
-In Markdown:
+For Markdown:
 
 ```markdown
 Email: bart.simpson@example.com
 ```
 
-The avatar image corresponding to the specified email is searched at Libravatar. If it is not found there, it is searched (transparently) at Gravatar. If the avatar for the specified email address is not found at any of those services, a default picture is shown. The default for the "missing picture" can be defined in the configuration variable `AVATAR_MISSING`.
+The plugin first tries to find an avatar image corresponding to the specified email at Libravatar. If it is not found there, the plugin then searches Gravatar. If an avatar for the specified email address is not found at any of those services, a default picture is shown. The default for the "missing picture" can be defined in the configuration variable `AVATAR_MISSING`.
 
-### Adjusting the template
+### Adjusting the Template
 
-This plugin assigns the `author_avatar` variable to the Libravatar URL and makes the variable available within the article's context. For instance, you can add the following to a template file (for example, to the `article_infos.html` template file), just before the information about the author:
+This plugin assigns the `author_avatar` variable to the avatar image URL and makes that variable available within the article's context. For instance, you can add the following to a template file (for example, to the `article_infos.html` template file), just before the information about the author:
 
 ```html
 {% if article.author_avatar %}
@@ -77,8 +77,7 @@ To use in common templates, such as `base.html`, you can do something like this:
 {% endif %}
 ```
 
-Or if you want to support optional overriding of the email in articles or pages,
-while still taking the global configuration if neither is available:
+Or if you want to support optional overriding of the email address in articles or pages, while still using the global configuration if neither is available:
 
 ```html
 {% if article and article.author_avatar %}
@@ -96,21 +95,20 @@ while still taking the global configuration if neither is available:
 Configuration
 -------------
 
-The following variables can be set in the Pelican configuration file:
+The following variables can be set in the Pelican settings file:
 
-- `AVATAR_AUTHOR_EMAIL`: site-wide default for the author's email address.
+- `AVATAR_AUTHOR_EMAIL`: Site-wide default for the author's email address.
 
-- `AVATAR_MISSING`: The default for the missing picture. This can be either a url (e.g. `"http://example.com/nobody.png"`) or the name of a library of logos (e.g. `"wavatar"`; for the full set of alternativas, see the [Libravatar API](https://wiki.libravatar.org/api/)).
+- `AVATAR_MISSING`: The default for the missing picture. This can be either a URL (e.g., `"http://example.com/nobody.png"`) or the name of a library of logos (e.g., `"wavatar"`; for the full set of alternatives, see the [Libravatar API](https://wiki.libravatar.org/api/)).
 
 - `AVATAR_SIZE`: The size, in pixels, of the profile picture (it is always square, so the height is equal to the width). If not specified, the default size (80×80) is returned by Libravatar.
 
-- `AVATAR_USE_GRAVATAR`: By default, the avatar is searched at the Libravatar service. Search at the Gravatar service can be forced by setting this configuration variable to `True`.
+- `AVATAR_USE_GRAVATAR`: The plugin looks up avatars via the Libravatar service by default. Searching the Gravatar service can be forced by setting this configuration variable to `True`.
 
 Credits
 -------
 
-Inspiration for this plugin came from the
-[gravatar plugin](https://github.com/getpelican/pelican-plugins/tree/master/gravatar).
+Inspiration for this plugin came from the [Gravatar plugin](https://github.com/getpelican/pelican-plugins/tree/master/gravatar).
 
 Contributing
 ------------
@@ -119,7 +117,7 @@ Contributions are welcome and much appreciated. Every little bit helps. You can 
 
 To start contributing to this plugin, review the [Contributing to Pelican][] documentation, beginning with the **Contributing Code** section.
 
-[existing issues]: https://github.com/pelican-plugins/libravatar/issues
+[existing issues]: https://github.com/pelican-plugins/avatar/issues
 [Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
 
 Acknowledgments
@@ -137,4 +135,4 @@ Copyright (C) 2015, 2021  Rafael Laboissière (<rafael@laboissiere.net>)
 License
 -------
 
-This project is licensed under the AGPL-3.0 license.
+This project is licensed under the AGPL 3.0 license.
