@@ -33,7 +33,7 @@ pelican = ">=4.5"
 libgravatar = ">=0.2.5"
 py3dns = ">=3.2"
 pylibravatar = ">=1.7"
-markdown = {version = "~3.2.2", optional = true}
+markdown = {version = "^3.2.2", optional = true}
 
 [tool.poetry.dev-dependencies]
 black = {version = "^19.10b0", allow-prereleases = true}
@@ -53,7 +53,7 @@ Werkzeug = "^1.0"
 markdown = ["markdown"]
 
 [tool.autopub]
-project-name = "avatar"
+project-name = "Avatar"
 git-username = "botpub"
 git-email = "botpub@autopub.rocks"
 append-github-contributor = true
