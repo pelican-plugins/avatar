@@ -53,7 +53,7 @@ This plugin assigns the `author_avatar` variable to the avatar image URL and mak
 
 This will yield the following result (with the [notmyidea][] theme):
 
-![figure](avatar-example.png)
+![figure](https://github.com/pelican-plugins/avatar/raw/main/avatar-example.png)
 
 [notmyidea]: https://github.com/getpelican/pelican/tree/master/pelican/themes/notmyidea
 
