@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pelican-avatar"
-version = "1.0.1"
+version = "1.0.2"
 description = "Libravatar/Gravatar plugin for Pelican"
 authors = ["Rafael Laboissière <rafael@laboissiere.net>"]
 license = "AGPL-3.0"

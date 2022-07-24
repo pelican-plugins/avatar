@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.0.2 - 2022-07-24
+------------------
+
+Get the correct URL of Gravatar images (this fixes issue #11)
+
 1.0.1 - 2021-11-04
 ------------------
 
