@@ -32,9 +32,9 @@ from . import avatar
 
 GLOBAL_AUTHOR_EMAIL = "homer.simpson@example.com"
 ARTICLE_AUTHOR_EMAIL = "bart.simpson@example.com"
-GLOBAL_GRAVATAR_URL = Gravatar(GLOBAL_AUTHOR_EMAIL).get_profile()
+GLOBAL_GRAVATAR_URL = Gravatar(GLOBAL_AUTHOR_EMAIL).get_image()
 GLOBAL_LIBRVATAR_URL = libravatar_url(GLOBAL_AUTHOR_EMAIL)
-ARTICLE_GRAVATAR_URL = Gravatar(ARTICLE_AUTHOR_EMAIL).get_profile()
+ARTICLE_GRAVATAR_URL = Gravatar(ARTICLE_AUTHOR_EMAIL).get_image()
 ARTICLE_LIBRAVATAR_URL = libravatar_url(ARTICLE_AUTHOR_EMAIL)
 
 

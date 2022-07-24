@@ -42,7 +42,7 @@ def gen_avatar_url(settings, email):
     email = email.lower()
     # Compose URL
     if settings.get("AVATAR_USE_GRAVATAR"):
-        url = Gravatar(email).get_profile()
+        url = Gravatar(email).get_image()
     else:
         url = libravatar_url(email)
 
