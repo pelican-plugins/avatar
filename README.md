@@ -1,7 +1,7 @@
 Avatar: A Plugin for Pelican
 ============================
 
-[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/avatar/build)](https://github.com/pelican-plugins/avatar/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/avatar/main.yml?branch=main)](https://github.com/pelican-plugins/avatar/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-avatar)](https://pypi.org/project/pelican-avatar/)
 ![License](https://img.shields.io/pypi/l/pelican-avatar?color=blue)
 
