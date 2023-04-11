@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 
-from __future__ import print_function
 
 import os
 from shutil import rmtree
@@ -100,7 +99,7 @@ class TestAvatarURL(unittest.TestCase):
         rmtree(self.content_path)
 
     def _assert_url_in_file(self, filename, url, options):
-        with open(os.path.join(self.output_path, filename), "r") as test_html_file:
+        with open(os.path.join(self.output_path, filename)) as test_html_file:
             found = False
             search_url = url + options
             for line in test_html_file:
