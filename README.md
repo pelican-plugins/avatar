@@ -136,4 +136,4 @@ Copyright (C) 2015, 2021, 2022  Rafael Laboissière (<rafael@laboissiere.net>)
 License
 -------
 
-This project is licensed under the AGPL 3.0 license.
+This project is licensed under the terms of the AGPL 3.0 license.
