@@ -83,6 +83,12 @@ select = [
   "YTT", # flake8-2020
 ]
 
+ignore = [
+  "D100",    # missing docstring in public module
+  "D102",    # missing docstring in public method
+  "D104",    # missing docstring in public package
+]
+
 target-version = "py38"
 
 [tool.ruff.isort]
