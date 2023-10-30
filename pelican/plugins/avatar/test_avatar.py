@@ -41,6 +41,7 @@ class TestAvatarURL(unittest.TestCase):
     """Class for testing the URL output of the Avatar plugin."""
 
     def setUp(self, override=None):
+        """Set up the test environment."""
         self.output_path = mkdtemp(prefix="pelicantests.")
         self.content_path = mkdtemp(prefix="pelicantests.")
         with open(
