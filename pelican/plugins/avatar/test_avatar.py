@@ -1,4 +1,4 @@
-"""Unit testing suite for the Avatar Plugin"""
+"""Unit testing suite for the Avatar Plugin."""
 
 # Copyright (C) 2015, 2021, 2022  Rafael Laboissiere <rafael@laboissiere.net>
 #
@@ -38,7 +38,7 @@ ARTICLE_LIBRAVATAR_URL = libravatar_url(ARTICLE_AUTHOR_EMAIL)
 
 
 class TestAvatarURL(unittest.TestCase):
-    """Class for testing the URL output of the Avatar plugin"""
+    """Class for testing the URL output of the Avatar plugin."""
 
     def setUp(self, override=None):
         self.output_path = mkdtemp(prefix="pelicantests.")
@@ -121,7 +121,7 @@ class TestAvatarURL(unittest.TestCase):
 
 
 class TestAvatarMissing(TestAvatarURL):
-    """Class for testing the "missing picture" option"""
+    """Class for testing the "missing picture" option."""
 
     def setUp(self, override=None):
         self.library = "wavatar"
@@ -132,7 +132,7 @@ class TestAvatarMissing(TestAvatarURL):
 
 
 class TestAvatarSize(TestAvatarURL):
-    """Class for testing the size option"""
+    """Class for testing the size option."""
 
     def setUp(self, override=None):
         self.size = 100
@@ -143,7 +143,7 @@ class TestAvatarSize(TestAvatarURL):
 
 
 class TestAvatarUseGravatar(TestAvatarURL):
-    """Class for testing the 'use Gravatar' option"""
+    """Class for testing the 'use Gravatar' option."""
 
     def setUp(self, override=None):
         TestAvatarURL.setUp(self, override={"AVATAR_USE_GRAVATAR": True})

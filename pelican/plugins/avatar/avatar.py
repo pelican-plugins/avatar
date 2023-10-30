@@ -1,4 +1,4 @@
-"""Avatar plugin for Pelican"""
+"""Avatar plugin for Pelican."""
 
 # Copyright (C) 2015, 2021, 2022  Rafael Laboissière <rafael@laboissiere.net>
 #
@@ -22,7 +22,7 @@ from pelican import signals
 
 
 def initialize(pelicanobj):
-    """Initialize the Avatar plugin"""
+    """Initialize the Avatar plugin."""
     pelicanobj.settings.setdefault("AVATAR_MISSING", None)
     pelicanobj.settings.setdefault("AVATAR_SIZE", None)
     pelicanobj.settings.setdefault("AVATAR_USE_GRAVATAR", None)
@@ -84,7 +84,7 @@ def add_avatar(generator, metadata):
 
 
 def register():
-    """Register the Avatar plugin with Pelican"""
+    """Register the Avatar plugin with Pelican."""
     signals.initialized.connect(initialize)
     signals.article_generator_context.connect(add_avatar)
     signals.page_generator_context.connect(add_avatar)
