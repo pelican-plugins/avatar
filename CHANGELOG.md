@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.0.5 - 2023-10-30
+------------------
+
+Update list of years in Copyright notices
+
 1.0.4 - 2023-10-30
 ------------------
 
