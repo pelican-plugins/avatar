@@ -95,6 +95,7 @@ class TestAvatarURL(unittest.TestCase):
         pelican.run()
 
     def tearDown(self):
+        """Tidy up the test environment."""
         rmtree(self.output_path)
         rmtree(self.content_path)
 
@@ -109,6 +110,7 @@ class TestAvatarURL(unittest.TestCase):
             assert found
 
     def test_url(self, options=""):
+        """Test whether the Avatar URL appears in the generated HTML file."""
         if self.settings["AVATAR_USE_GRAVATAR"]:
             global_base_url = GLOBAL_GRAVATAR_URL
             article_base_url = ARTICLE_GRAVATAR_URL
@@ -124,10 +126,12 @@ class TestAvatarMissing(TestAvatarURL):
     """Class for testing the "missing picture" option."""
 
     def setUp(self, override=None):
+        """Set up the test environment."""
         self.library = "wavatar"
         TestAvatarURL.setUp(self, override={"AVATAR_MISSING": self.library})
 
     def test_url(self):
+        """Test whether the 'd' option appears in the Avatar URL."""
         TestAvatarURL.test_url(self, r"?d=" + self.library)
 
 
@@ -135,10 +139,12 @@ class TestAvatarSize(TestAvatarURL):
     """Class for testing the size option."""
 
     def setUp(self, override=None):
+        """Set up the test environment."""
         self.size = 100
         TestAvatarURL.setUp(self, override={"AVATAR_SIZE": self.size})
 
     def test_url(self):
+        """Test whether the 's' option appears in the Avatar URL."""
         TestAvatarURL.test_url(self, r"?s=" + str(self.size))
 
 
@@ -146,7 +152,9 @@ class TestAvatarUseGravatar(TestAvatarURL):
     """Class for testing the 'use Gravatar' option."""
 
     def setUp(self, override=None):
+        """Set up the test environment."""
         TestAvatarURL.setUp(self, override={"AVATAR_USE_GRAVATAR": True})
 
     def test_url(self):
+        """Test whether Gravatar is used."""
         TestAvatarURL.test_url(self)
