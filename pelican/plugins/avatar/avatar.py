@@ -57,7 +57,7 @@ def gen_avatar_url(settings, email):
 
 
 def add_avatar_context(generator):
-    """Generator context connector for Avatar plugin."""
+    """Add generator context connector for Avatar plugin."""
     # This adds the avatar URL to the global generator context based on the
     # global setting.
     email = generator.settings.get("AVATAR_AUTHOR_EMAIL")
@@ -67,8 +67,7 @@ def add_avatar_context(generator):
 
 
 def add_avatar(generator, metadata):
-    """Article/Page generator connector for the Avatar plugin"""
-
+    """Add Avatar URL to the article/page metadata."""
     # Check the presence of the Email header
     if "email" in metadata:
         email = metadata["email"]
