@@ -1,1 +1,1 @@
-from .avatar import *  # NOQA
+from .avatar import *  # NOQA: F403
