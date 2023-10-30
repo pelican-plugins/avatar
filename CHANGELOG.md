@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.0.4 - 2023-10-30
+------------------
+
+* Improve docstrings
+* Migrate to the new standard tooling
+
 1.0.3 - 2022-10-01
 ------------------
 
