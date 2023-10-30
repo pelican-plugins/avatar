@@ -29,9 +29,7 @@ def initialize(pelicanobj):
 
 
 def gen_avatar_url(settings, email):
-    """
-    Generate the appropriate libravatar/gravatar URL based on the provided email.
-    """
+    """Generate the appropriate libravatar/gravatar URL based on the provided email."""
     # Early exit if there is nothing to do
     if not email:
         return None
