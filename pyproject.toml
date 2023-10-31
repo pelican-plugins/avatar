@@ -51,7 +51,6 @@ test = [
     "pytest-sugar>=0.9.7",
 ]
 
-
 [tool.autopub]
 project-name = "Avatar"
 git-username = "botpub"
