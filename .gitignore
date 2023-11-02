@@ -1,2 +1,4 @@
-/poetry.lock
-/pelican/plugins/avatar/__pycache__/
+/dist/
+/pdm.lock
+__pycache__/
+
