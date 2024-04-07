@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+1.0.6 - 2024-04-07
+------------------
+
+Maintainance release (no user visible changes)
+
+* Add Python 3.12 to CI test matrix
+* Switch build system from Hatchling to PDM
+
 1.0.5 - 2023-10-30
 ------------------
 

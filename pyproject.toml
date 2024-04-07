@@ -1,6 +1,6 @@
 [project]
 name = "pelican-avatar"
-version = "1.0.5"
+version = "1.0.6"
 description = "Libravatar/Gravatar plugin for Pelican"
 authors = [{name = "Rafael Laboissière", email = "rafael@laboissiere.net"}]
 license = {text = "AGPL-3.0"}
