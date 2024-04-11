@@ -123,10 +123,12 @@ To start contributing to this plugin, review the [Contributing to Pelican][] doc
 Acknowledgments
 ---------------
 
-Thanks to [Justin Mayer][] for helping with migration of this plugin under the Pelican Plugins organization and  to [Troy Curtis][] for adding support for page generator and global generator context and for making improvements in the Poetry workflow.
+Thanks to [Justin Mayer][] for helping with migration of this plugin under the Pelican Plugins organization, to [Troy Curtis][] for adding support for page generator and global generator context and for making improvements in the Poetry workflow, to [Lucas Cimon][] for fixes in the test suit and in the CI support, and to [Christian Clauss][] for Python 3 porting.
 
 [Justin Mayer]: https://github.com/justinmayer
 [Troy Curtis]: https://github.com/troycurtisjr
+[Lucas Cimon]: https://github.com/Lucas-C
+[Christian Clauss]: https://github.com/cclauss
 
 Author
 ------
