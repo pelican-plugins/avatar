@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+1.0.8 - 2024-04-11
+------------------
+
+Maintainance release (no user visible changes)
+
+* Add acknowledgments to Lucas Cimon and Christian Clauss
+* Update list of Copyright years
+
 1.0.7 - 2024-04-11
 ------------------
 
