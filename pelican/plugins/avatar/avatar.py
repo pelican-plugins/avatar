@@ -40,19 +40,23 @@ def gen_avatar_url(settings, email):
     email = email.lower()
     # Compose URL
     if settings.get("AVATAR_USE_GRAVATAR"):
-        url = Gravatar(email).get_image()
+        params = {}
+        if missing:
+            params["default"] = missing
+        if size:
+            params["size"] = size
+        url = Gravatar(email).get_image(**params)
     else:
         url = libravatar_url(email)
-
-    # Add eventual "missing picture" option
-    if missing or size:
-        url = url + "?"
-        if missing:
-            url = url + "d=" + missing
+        if missing or size:
+            url = url + "?"
+            if missing:
+                url = url + "d=" + missing
+                if size:
+                    url = url + "&"
             if size:
-                url = url + "&"
-        if size:
-            url = url + "s=" + str(size)
+                url = url + "s=" + str(size)
+
     return url
 
 
