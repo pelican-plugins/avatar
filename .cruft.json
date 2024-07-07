@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/getpelican/cookiecutter-pelican-plugin",
+  "commit": "b4b9b4f83b624cfd7728a3f1527d272be28ee916",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "plugin_name": "Avatar",
+      "repo_name": "avatar",
+      "package_name": "avatar",
+      "distribution_name": "pelican-avatar",
+      "version": "1.0.9",
+      "description": "Libravatar/Gravatar plugin for Pelican",
+      "authors": "{name = \"Rafael Laboissière\", email = \"rafael@laboissiere.net\"}",
+      "keywords": "\"pelican\", \"plugin\", \"libravatar\", \"gravatar\"",
+      "readme": "README.md",
+      "contributing": "CONTRIBUTING.md",
+      "license": "GNU Affero General Public License v3|AGPL-3.0",
+      "repo_url": "https://github.com/pelican-plugins/avatar",
+      "dev_status": "5 - Production/Stable",
+      "tests_exist": true,
+      "python_version": ">=3.8.1,<4.0",
+      "pelican_version": ">=4.5",
+      "_template": "https://github.com/getpelican/cookiecutter-pelican-plugin"
+    }
+  },
+  "directory": null
+}
