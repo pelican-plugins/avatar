@@ -3,6 +3,7 @@ Avatar: A Plugin for Pelican
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/avatar/main.yml?branch=main)](https://github.com/pelican-plugins/avatar/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-avatar)](https://pypi.org/project/pelican-avatar/)
+[![Downloads](https://img.shields.io/pypi/dm/pelican-avatar)](https://pypi.org/project/pelican-avatar/)
 [![License](https://img.shields.io/pypi/l/pelican-avatar?color=blue)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 This plugin allows the inclusion of [Libravatar][] or [Gravatar][] user profile pictures, corresponding to the email address of the article's author.
@@ -16,6 +17,8 @@ Installation
 This plugin can be installed via:
 
     python -m pip install pelican-avatar
+
+As long as you have not explicitly added a `PLUGINS` setting to your Pelican settings file, then the newly-installed plugin should be automatically detected and enabled. Otherwise, you must add `avatar` to your existing `PLUGINS` list. For more information, please see the [How to Use Plugins](https://docs.getpelican.com/en/latest/plugins.html#how-to-use-plugins) documentation.
 
 Usage
 -----
