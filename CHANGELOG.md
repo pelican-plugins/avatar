@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.10 - 2024-09-23
+-------------------
+
+This is a maintenance release. No user-visible changes have been made. This
+release tests the new system to keep alignment with plugin template via
+Cruft (thanks to Justin Meyer for the changes).
+
 1.0.9 - 2024-04-14
 ------------------
 
