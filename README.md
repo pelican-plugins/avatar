@@ -18,7 +18,7 @@ This plugin can be installed via:
 
     python -m pip install pelican-avatar
 
-As long as you have not explicitly added a `PLUGINS` setting to your Pelican settings file, then the newly-installed plugin should be automatically detected and enabled. Otherwise, you must add `avatar` to your existing `PLUGINS` list. For more information, please see the [How to Use Plugins](https://docs.getpelican.com/en/latest/plugins.html#how-to-use-plugins) documentation.
+As long as you have not explicitly added a `PLUGINS` setting to your Pelican settings file, the newly-installed plugin should be detected and enabled automatically. Otherwise, you must add `avatar` to your existing `PLUGINS` list. For more information, please refer to the [How to Use Plugins](https://docs.getpelican.com/en/latest/plugins.html#how-to-use-plugins) documentation.
 
 Usage
 -----
@@ -39,11 +39,11 @@ For Markdown:
 Email: bart.simpson@example.com
 ```
 
-The plugin first tries to find an avatar image corresponding to the specified email at Libravatar. If it is not found there, the plugin then searches Gravatar. If an avatar for the specified email address is not found at any of those services, a default picture is shown. The default for the "missing picture" can be defined in the configuration variable `AVATAR_MISSING`.
+First, the plugin tries to find a corresponding avatar image for the specified email at Libravatar. If it is not found there, the plugin searches Gravatar. If an avatar is not found at either service, a default picture is shown. The “missing picture” default can be defined in the configuration variable `AVATAR_MISSING`.
 
 ### Adjusting the Template
 
-This plugin assigns the `author_avatar` variable to the avatar image URL and makes that variable available within the article's context. For instance, you can add the following to a template file (for example, to the `article_infos.html` template file), just before the information about the author:
+This plugin assigns the `author_avatar` variable to the avatar image URL and makes that variable available within the article's context. For instance, you can add the following code to a template file, such as the `article_infos.html` template file, just before the author information:
 
 ```html
 {% if article.author_avatar %}
@@ -80,7 +80,7 @@ To use in common templates, such as `base.html`, you can do something like this:
 {% endif %}
 ```
 
-Or if you want to support optional overriding of the email address in articles or pages, while still using the global configuration if neither is available:
+If you want to allow the email address to be overridden in articles or pages while still using the global configuration if neither is available, you can do so:
 
 ```html
 {% if article and article.author_avatar %}
@@ -98,11 +98,11 @@ Or if you want to support optional overriding of the email address in articles o
 Configuration
 -------------
 
-The following variables can be set in the Pelican settings file:
+The following variables can be configured in the Pelican settings file:
 
-- `AVATAR_AUTHOR_EMAIL`: Site-wide default for the author's email address.
+- `AVATAR_AUTHOR_EMAIL`: The site-wide default for the author's email address.
 
-- `AVATAR_MISSING`: The default for the missing picture. This can be either a URL (e.g., `"http://example.com/nobody.png"`) or the name of a library of logos (e.g., `"wavatar"`; for the full set of alternatives, see the [Libravatar API](https://wiki.libravatar.org/api/)).
+- `AVATAR_MISSING`: The default for the missing picture. It can be either a URL (e.g., `"http://example.com/nobody.png"`) or the name of a logo library (e.g., `"wavatar"`. For the full set of alternatives, see the [Libravatar API](https://wiki.libravatar.org/api/)).
 
 - `AVATAR_SIZE`: The size, in pixels, of the profile picture (it is always square, so the height is equal to the width). If not specified, the default size (80×80) is returned by Libravatar.
 
@@ -111,7 +111,7 @@ The following variables can be set in the Pelican settings file:
 Credits
 -------
 
-Inspiration for this plugin came from the [Gravatar plugin](https://github.com/getpelican/pelican-plugins/tree/master/gravatar).
+The inspiration for this plugin came from the [Gravatar plugin](https://github.com/getpelican/pelican-plugins/tree/master/gravatar).
 
 Contributing
 ------------
@@ -126,7 +126,8 @@ To start contributing to this plugin, review the [Contributing to Pelican][] doc
 Acknowledgments
 ---------------
 
-Thanks to [Justin Mayer][] for helping with migration of this plugin under the Pelican Plugins organization, to [Troy Curtis][] for adding support for page generator and global generator context and for making improvements in the Poetry workflow, to [Lucas Cimon][] for fixes in the test suit and in the CI support, and to [Christian Clauss][] for Python 3 porting.
+Thanks to [Justin Mayer][] for helping migrate of this plugin under the Pelican Plugins organization, to [Troy Curtis][] for adding support for page and global generator context and for improving the Poetry workflow (even though we are now using PDM), to [Lucas Cimon][] for fixing the test suite and providing CI support, and to [Christian Clauss][] for the Python 3 port.
+
 
 [Justin Mayer]: https://github.com/justinmayer
 [Troy Curtis]: https://github.com/troycurtisjr
