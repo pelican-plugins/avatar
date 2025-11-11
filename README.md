@@ -137,7 +137,7 @@ Thanks to [Justin Mayer][] for helping migrate of this plugin under the Pelican 
 Author
 ------
 
-Copyright (C) 2015, 2021-2024  Rafael Laboissière (<rafael@laboissiere.net>)
+Copyright (C) 2015, 2021-2025  Rafael Laboissière (<rafael@laboissiere.net>)
 
 License
 -------
